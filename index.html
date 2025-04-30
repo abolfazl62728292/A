@@ -3,109 +3,108 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شمارش معکوس تا کنکور 🎯</title>
+    <title>شمارش معکوس کنکور</title>
     <style>
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Tahoma, Arial, sans-serif;
+            font-family: 'Vazir', Tahoma, Arial, sans-serif;
         }
 
         body {
-            background-color: #1a1a1a;
-            height: 100vh;
+            background-color: #ffffff;
+            min-height: 100vh;
             display: flex;
-            flex-direction: column;
             align-items: center;
             justify-content: center;
-            color: white;
+            padding: 20px;
         }
 
         .container {
-            text-align: center;
+            background-color: #fff;
+            border-radius: 20px;
             padding: 2rem;
-            border-radius: 15px;
-            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            width: 100%;
+            max-width: 600px;
+            text-align: center;
         }
 
         h1 {
+            color: #2c3e50;
+            font-size: 1.5rem;
             margin-bottom: 2rem;
-            color: #FF6B6B;
-            font-size: 1.8rem;
-            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+            font-weight: 900;
         }
 
         .timer {
-            display: flex;
-            gap: 1.5rem;
-            margin-bottom: 1.5rem;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
+            gap: 1rem;
+            margin-bottom: 2rem;
         }
 
         .time-block {
             display: flex;
             flex-direction: column;
             align-items: center;
-            min-width: 80px;
         }
 
         .number {
-            font-size: 2.5rem;
+            font-size: 2rem;
             font-weight: bold;
-            background: #333;
-            padding: 1rem;
-            border-radius: 8px;
-            margin-bottom: 0.5rem;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            color: #fff;
+            background: #3498db;
+            width: 100%;
+            max-width: 100px;
+            padding: 1rem 0.5rem;
+            border-radius: 12px;
+            transition: transform 0.3s ease;
         }
 
-        .number::after {
-            content: '';
-            position: absolute;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: 2px;
-            background: #FF6B6B;
-            animation: pulse 1s infinite;
+        .number:hover {
+            transform: translateY(-2px);
         }
 
         .label {
+            margin-top: 0.5rem;
+            color: #7f8c8d;
             font-size: 0.9rem;
-            color: #aaa;
         }
 
         .message {
-            margin-top: 2rem;
-            color: #888;
-            font-size: 1rem;
-            animation: fadeInOut 2s infinite;
+            color: #e74c3c;
+            font-weight: bold;
+            margin-top: 1.5rem;
+            font-size: 1.1rem;
         }
 
         .date-info {
-            margin-top: 1rem;
-            color: #666;
+            color: #95a5a6;
             font-size: 0.8rem;
+            margin-top: 1rem;
         }
 
-        @keyframes pulse {
-            0% { transform: scaleX(0); }
-            50% { transform: scaleX(1); }
-            100% { transform: scaleX(0); }
-        }
+        @media (max-width: 480px) {
+            .container {
+                padding: 1.5rem;
+            }
 
-        @keyframes fadeInOut {
-            0% { opacity: 0.5; }
-            50% { opacity: 1; }
-            100% { opacity: 0.5; }
+            .number {
+                font-size: 1.5rem;
+                padding: 0.8rem 0.4rem;
+            }
+
+            h1 {
+                font-size: 1.2rem;
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⏳ شمارش معکوس تا کنکور</h1>
+        <h1>⏳ تا کنکور ۱۴۰۳</h1>
         <div class="timer">
             <div class="time-block">
                 <div class="number" id="days">00</div>
@@ -124,12 +123,11 @@
                 <div class="label">ثانیه</div>
             </div>
         </div>
-        <div class="message">تا شروع کنکور ۱۴۰۳ ...</div>
-        <div class="date-info">پنجشنبه ۶ تیر ۱۴۰۳ - ساعت ۱۰:۰۰ صبح</div>
+        <div class="message">آماده‌ای برای موفقیت؟ 💪</div>
+        <div class="date-info">پنجشنبه ۶ تیر ۱۴۰۳ - ساعت ۱۰:۰۰</div>
     </div>
 
     <script>
-        // تاریخ کنکور: ۶ تیر ۱۴۰۳ ساعت ۱۰ صبح
         const endDate = new Date('2024-06-27T10:00:00');
 
         function updateTimer() {
@@ -137,7 +135,8 @@
             const timeLeft = endDate - now;
 
             if (timeLeft <= 0) {
-                document.querySelector('.container').innerHTML = '<h1>🎯 وقت کنکوره! موفق باشی! 💪</h1>';
+                document.querySelector('.container').innerHTML = 
+                    '<h1 style="color: #e74c3c; font-size: 1.8rem;">🎯 وقت کنکوره! موفق باشی! 💪</h1>';
                 return;
             }
 
@@ -152,7 +151,6 @@
             document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
         }
 
-        // بروزرسانی تایمر هر ثانیه
         setInterval(updateTimer, 1000);
         updateTimer();
     </script>
