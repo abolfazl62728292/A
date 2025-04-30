@@ -3,7 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شمارش معکوس کنکور</title>
+    <meta name="description" content="شمارشگر معکوس تا کنکور سراسری ۱۴۰۴">
+    <meta name="keywords" content="کنکور, شمارش معکوس, کنکور ۱۴۰۴">
+    <title>شمارش معکوس کنکور ۱۴۰۴</title>
     <style>
         * {
             margin: 0;
@@ -13,7 +15,7 @@
         }
 
         body {
-            background-color: #ffffff;
+            background: linear-gradient(135deg, #6c5ce7, #a363d9);
             min-height: 100vh;
             display: flex;
             align-items: center;
@@ -22,97 +24,168 @@
         }
 
         .container {
-            background-color: #fff;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
             border-radius: 20px;
             padding: 2rem;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             width: 100%;
-            max-width: 600px;
+            max-width: 800px;
             text-align: center;
         }
 
         h1 {
-            color: #2c3e50;
-            font-size: 1.5rem;
+            color: #ffffff;
+            font-size: 2rem;
             margin-bottom: 2rem;
             font-weight: 900;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+            animation: fadeInDown 1s ease;
         }
 
         .timer {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(80px, 1fr));
-            gap: 1rem;
+            display: flex;
+            justify-content: center;
+            gap: 1.5rem;
             margin-bottom: 2rem;
+            flex-wrap: nowrap;
         }
 
         .time-block {
             display: flex;
             flex-direction: column;
             align-items: center;
+            animation: fadeInUp 1s ease;
         }
 
         .number {
-            font-size: 2rem;
+            font-size: 3rem;
             font-weight: bold;
-            color: #fff;
-            background: #3498db;
-            width: 100%;
-            max-width: 100px;
-            padding: 1rem 0.5rem;
-            border-radius: 12px;
-            box-shadow: 0 4px 6px rgba(52, 152, 219, 0.2);
-            transition: all 0.3s ease;
+            color: #ffffff;
+            background: rgba(255, 255, 255, 0.1);
+            min-width: 120px;
+            padding: 1.5rem 1rem;
+            border-radius: 15px;
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1),
+                       inset 0 0 15px rgba(255, 255, 255, 0.2);
+            backdrop-filter: blur(5px);
+            transition: all 0.4s ease;
+            animation: pulse 2s infinite;
         }
 
         .number:hover {
-            transform: translateY(-2px);
-            box-shadow: 0 6px 8px rgba(52, 152, 219, 0.3);
+            transform: translateY(-5px) scale(1.05);
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2),
+                       inset 0 0 20px rgba(255, 255, 255, 0.3);
         }
 
         .label {
-            margin-top: 0.5rem;
-            color: #7f8c8d;
-            font-size: 0.9rem;
+            margin-top: 0.8rem;
+            color: #ffffff;
+            font-size: 1rem;
+            font-weight: 500;
+            text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+            opacity: 0.9;
         }
 
         .message {
-            color: #e74c3c;
+            color: #ffffff;
             font-weight: bold;
-            margin-top: 1.5rem;
-            font-size: 1.1rem;
+            margin-top: 2rem;
+            font-size: 1.2rem;
             padding: 1rem;
             border-radius: 10px;
-            background-color: #fef9f9;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(5px);
+            box-shadow: 0 4px 15px rgba(0, 0, 0, 0.1);
+            animation: fadeIn 1s ease;
         }
 
         .date-info {
-            color: #95a5a6;
-            font-size: 0.8rem;
-            margin-top: 1rem;
+            color: #ffffff;
+            font-size: 0.9rem;
+            margin-top: 1.5rem;
+            opacity: 0.8;
         }
 
-        @media (max-width: 480px) {
-            .container {
-                padding: 1.5rem;
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        @keyframes pulse {
+            0% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.02);
+            }
+            100% {
+                transform: scale(1);
+            }
+        }
+
+        @media (max-width: 768px) {
+            .timer {
+                flex-wrap: wrap;
+                gap: 1rem;
             }
 
             .number {
-                font-size: 1.5rem;
-                padding: 0.8rem 0.4rem;
+                min-width: 90px;
+                font-size: 2rem;
+                padding: 1rem 0.5rem;
             }
 
             h1 {
-                font-size: 1.2rem;
+                font-size: 1.5rem;
+            }
+
+            .container {
+                padding: 1.5rem;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .number {
+                min-width: 70px;
+                font-size: 1.5rem;
             }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <h1>⏳ تا کنکور ۱۴۰۳</h1>
+        <h1>⏳ تا کنکور ۱۴۰۴</h1>
         <div class="timer">
             <div class="time-block">
-                <div class="number" id="days">00</div>
+                <div class="number" id="days">000</div>
                 <div class="label">روز</div>
             </div>
             <div class="time-block">
@@ -133,56 +206,80 @@
     </div>
 
     <script>
-        // تنظیم تاریخ و زمان برگزاری کنکور (مثال: 27 تیر 1403 ساعت 10 صبح)
-        const examDate = new Date(2024, 5, 27, 10, 0, 0);
+    (function() {
+        // تنظیم تاریخ کنکور ۱۴۰۴
+        const examDate = new Date("2025-06-29T08:00:00");
 
-        // نمایش اطلاعات تاریخ به فرمت فارسی
+        // آرایه پیام‌های انگیزشی
+        const messages = [
+            "💪 با تلاش و پشتکار به موفقیت می‌رسی!",
+            "📚 هر روز یک قدم به هدفت نزدیک‌تر می‌شوی",
+            "🌟 باور داشته باش که می‌تونی!",
+            "🎯 تمرکز کن، موفقیت نزدیکه!",
+            "⭐️ آینده‌ت رو خودت می‌سازی!",
+            "📖 با هر ساعت مطالعه، به رویات نزدیک‌تر میشی"
+        ];
+
+        // نمایش اطلاعات تاریخ به زبان فارسی
         const dateInfoEl = document.getElementById('dateInfo');
         dateInfoEl.textContent = examDate.toLocaleDateString('fa-IR', {
-            weekday: 'long', year: 'numeric', month: 'numeric', day: 'numeric'
-        }) + ' - ساعت ' + String(examDate.getHours()).padStart(2, '0') + ':' + String(examDate.getMinutes()).padStart(2, '0');
+            weekday: 'long',
+            year: 'numeric',
+            month: 'long',
+            day: 'numeric'
+        }) + ' - ساعت ' + examDate.toLocaleTimeString('fa-IR', {
+            hour: '2-digit',
+            minute: '2-digit'
+        });
 
-        // تابع به‌روزرسانی تایمر
+        // گرفتن المان‌ها
+        const daysEl = document.getElementById('days');
+        const hoursEl = document.getElementById('hours');
+        const minutesEl = document.getElementById('minutes');
+        const secondsEl = document.getElementById('seconds');
+        const messageEl = document.getElementById('message');
+
         function updateTimer() {
-            const now = Date.now();
-            const timeLeft = examDate.getTime() - now;
+            const now = new Date();
+            const diff = examDate - now;
 
-            // وقتی زمان کنکور رسیده یا گذشته
-            if (timeLeft <= 0) {
-                const container = document.querySelector('.container');
-                container.innerHTML = '<h1 style="color: #e74c3c; font-size: 1.8rem;">🎯 وقت کنکوره! موفق باشی! 💪</h1>';
-                clearInterval(timerInterval);
+            if (diff <= 0) {
+                document.querySelector('.container').innerHTML =
+                    '<h1 style="color: #ffffff; font-size: 1.8rem;">🎯 وقت کنکوره! موفق باشی! 💪</h1>';
                 return;
             }
 
-            // محاسبه روز، ساعت، دقیقه، ثانیه
-            const days    = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
-            const hours   = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
 
-            document.getElementById('days').textContent    = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent   = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
+            daysEl.textContent = String(days).padStart(3, '0');
+            hoursEl.textContent = String(hours).padStart(2, '0');
+            minutesEl.textContent = String(minutes).padStart(2, '0');
+            secondsEl.textContent = String(seconds).padStart(2, '0');
 
-            // انتخاب پیام انگیزشی
-            const messageEl = document.getElementById('message');
-            if (days > 30)          messageEl.textContent = "💪 با برنامه‌ریزی دقیق به هدفت میرسی!";
-            else if (days > 7)      messageEl.textContent = "🎯 تمرکز کن، موفقیت نزدیکه!";
-            else if (days > 1)      messageEl.textContent = "📚 هر دقیقه مهمه، از زمانت خوب استفاده کن!";
-            else                    messageEl.textContent = "⚡ آماده‌ای؟ موفقیت در انتظارته!";
+            // نمایش پیام انگیزشی تصادفی
+            if (!messageEl.getAttribute('data-initialized')) {
+                messageEl.textContent = messages[Math.floor(Math.random() * messages.length)];
+                messageEl.setAttribute('data-initialized', 'true');
+            }
+
+            // تغییر پیام هر 30 ثانیه
+            if (seconds === 0 && minutes % 1 === 0) {
+                messageEl.textContent = messages[Math.floor(Math.random() * messages.length)];
+            }
         }
 
-        // راه‌اندازی تایمر
+        // اجرای تایمر
         updateTimer();
-        const timerInterval = setInterval(updateTimer, 1000);
+        setInterval(updateTimer, 1000);
 
-        // به‌روزرسانی پس از بازگشت کاربر به تب
+        // به‌روزرسانی در صورت بازگشت به تب
         document.addEventListener('visibilitychange', () => {
             if (!document.hidden) updateTimer();
         });
+    })();
     </script>
 </body>
 </html>
-
