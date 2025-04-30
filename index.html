@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>شمارش معکوس تا کنکور 🎯</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Tahoma, Arial, sans-serif;
+        }
+
+        body {
+            background-color: #1a1a1a;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            color: white;
+        }
+
+        .container {
+            text-align: center;
+            padding: 2rem;
+            border-radius: 15px;
+            background: rgba(255, 255, 255, 0.05);
+        }
+
+        h1 {
+            margin-bottom: 2rem;
+            color: #FF6B6B;
+            font-size: 1.8rem;
+            text-shadow: 0 0 10px rgba(255, 107, 107, 0.3);
+        }
+
+        .timer {
+            display: flex;
+            gap: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .time-block {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-width: 80px;
+        }
+
+        .number {
+            font-size: 2.5rem;
+            font-weight: bold;
+            background: #333;
+            padding: 1rem;
+            border-radius: 8px;
+            margin-bottom: 0.5rem;
+            position: relative;
+            overflow: hidden;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+        }
+
+        .number::after {
+            content: '';
+            position: absolute;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 2px;
+            background: #FF6B6B;
+            animation: pulse 1s infinite;
+        }
+
+        .label {
+            font-size: 0.9rem;
+            color: #aaa;
+        }
+
+        .message {
+            margin-top: 2rem;
+            color: #888;
+            font-size: 1rem;
+            animation: fadeInOut 2s infinite;
+        }
+
+        .date-info {
+            margin-top: 1rem;
+            color: #666;
+            font-size: 0.8rem;
+        }
+
+        @keyframes pulse {
+            0% { transform: scaleX(0); }
+            50% { transform: scaleX(1); }
+            100% { transform: scaleX(0); }
+        }
+
+        @keyframes fadeInOut {
+            0% { opacity: 0.5; }
+            50% { opacity: 1; }
+            100% { opacity: 0.5; }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>⏳ شمارش معکوس تا کنکور</h1>
+        <div class="timer">
+            <div class="time-block">
+                <div class="number" id="days">00</div>
+                <div class="label">روز</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="hours">00</div>
+                <div class="label">ساعت</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="minutes">00</div>
+                <div class="label">دقیقه</div>
+            </div>
+            <div class="time-block">
+                <div class="number" id="seconds">00</div>
+                <div class="label">ثانیه</div>
+            </div>
+        </div>
+        <div class="message">تا شروع کنکور ۱۴۰۳ ...</div>
+        <div class="date-info">پنجشنبه ۶ تیر ۱۴۰۳ - ساعت ۱۰:۰۰ صبح</div>
+    </div>
+
+    <script>
+        // تاریخ کنکور: ۶ تیر ۱۴۰۳ ساعت ۱۰ صبح
+        const endDate = new Date('2024-06-27T10:00:00');
+
+        function updateTimer() {
+            const now = new Date();
+            const timeLeft = endDate - now;
+
+            if (timeLeft <= 0) {
+                document.querySelector('.container').innerHTML = '<h1>🎯 وقت کنکوره! موفق باشی! 💪</h1>';
+                return;
+            }
+
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
+
+            document.getElementById('days').textContent = days.toString().padStart(2, '0');
+            document.getElementById('hours').textContent = hours.toString().padStart(2, '0');
+            document.getElementById('minutes').textContent = minutes.toString().padStart(2, '0');
+            document.getElementById('seconds').textContent = seconds.toString().padStart(2, '0');
+        }
+
+        // بروزرسانی تایمر هر ثانیه
+        setInterval(updateTimer, 1000);
+        updateTimer();
+    </script>
+</body>
+</html>
