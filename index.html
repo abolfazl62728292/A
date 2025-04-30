@@ -1,68 +1,61 @@
 <!DOCTYPE html>
-<html lang="fa" dir="rtl">
+<html>
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>شمارش معکوس کنکور ۱۴۰۳</title>
+    <title>تایمر کنکور</title>
     <style>
-        * {
-            margin: 0;
-            padding: 0;
-            box-sizing: border-box;
-            font-family: system-ui, Tahoma, Arial;
-        }
-
         body {
-            background-color: #ffffff;
+            margin: 0;
             min-height: 100vh;
             display: flex;
-            align-items: center;
             justify-content: center;
+            align-items: center;
+            font-family: system-ui, -apple-system, Tahoma;
+            background-color: #fff;
+            direction: rtl;
+        }
+
+        #countdown {
             text-align: center;
+            background: white;
             padding: 20px;
-        }
-
-        .container {
-            width: 100%;
+            border-radius: 15px;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            width: 90%;
             max-width: 500px;
-            background: #fff;
-            border-radius: 20px;
-            padding: 30px 20px;
-            box-shadow: 0 0 20px rgba(0,0,0,0.05);
         }
 
-        .timer-display {
+        .timer {
             display: flex;
             justify-content: center;
-            gap: 15px;
-            margin: 30px 0;
+            gap: 10px;
+            margin: 20px 0;
             flex-wrap: wrap;
         }
 
-        .time-unit {
-            background: #f8f9fa;
+        .time-box {
+            background: #f0f0f0;
             padding: 15px;
-            border-radius: 12px;
-            min-width: 90px;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+            border-radius: 10px;
+            min-width: 80px;
         }
 
-        .number {
+        .time-value {
             font-size: 30px;
             font-weight: bold;
             color: #e74c3c;
             margin-bottom: 5px;
         }
 
-        .label {
+        .time-label {
             color: #666;
-            font-size: 14px;
         }
 
-        .title {
+        h1 {
             color: #2c3e50;
             font-size: 24px;
-            margin-bottom: 20px;
+            margin: 0 0 20px 0;
         }
 
         .message {
@@ -71,91 +64,56 @@
             margin-top: 20px;
             font-weight: bold;
         }
-
-        .date-info {
-            color: #666;
-            font-size: 14px;
-            margin-top: 15px;
-        }
-
-        @media (max-width: 480px) {
-            .time-unit {
-                min-width: 70px;
-            }
-            .number {
-                font-size: 24px;
-            }
-            .title {
-                font-size: 20px;
-            }
-        }
     </style>
 </head>
 <body>
-    <div class="container">
-        <div class="title">⏳ تا کنکور ۱۴۰۳</div>
-        
-        <div class="timer-display">
-            <div class="time-unit">
-                <div class="number" id="days">00</div>
-                <div class="label">روز</div>
+    <div id="countdown">
+        <h1>⏳ تا کنکور ۱۴۰۳</h1>
+        <div class="timer">
+            <div class="time-box">
+                <div class="time-value" id="days">--</div>
+                <div class="time-label">روز</div>
             </div>
-            <div class="time-unit">
-                <div class="number" id="hours">00</div>
-                <div class="label">ساعت</div>
+            <div class="time-box">
+                <div class="time-value" id="hours">--</div>
+                <div class="time-label">ساعت</div>
             </div>
-            <div class="time-unit">
-                <div class="number" id="minutes">00</div>
-                <div class="label">دقیقه</div>
+            <div class="time-box">
+                <div class="time-value" id="minutes">--</div>
+                <div class="time-label">دقیقه</div>
             </div>
-            <div class="time-unit">
-                <div class="number" id="seconds">00</div>
-                <div class="label">ثانیه</div>
+            <div class="time-box">
+                <div class="time-value" id="seconds">--</div>
+                <div class="time-label">ثانیه</div>
             </div>
         </div>
-
-        <div class="message" id="message"></div>
-        <div class="date-info">پنجشنبه ۶ تیر ۱۴۰۳ - ساعت ۱۰:۰۰ صبح</div>
+        <div class="message">پنجشنبه ۶ تیر ۱۴۰۳ - ساعت ۱۰ صبح</div>
     </div>
 
     <script>
-        function updateCountdown() {
-            // تاریخ کنکور: ۶ تیر ۱۴۰۳ ساعت ۱۰ صبح
-            const konkoorDate = new Date('2024-06-27T10:00:00');
-            const now = new Date();
-            
-            const diff = konkoorDate - now;
+        const targetDate = new Date('2024-06-27T10:00:00');
 
-            if (diff <= 0) {
-                document.querySelector('.container').innerHTML = `
-                    <div class="title">🎯 وقت کنکوره!</div>
-                    <div class="message">موفق باشی! 💪</div>
-                `;
+        function updateCountdown() {
+            const now = new Date();
+            const timeLeft = targetDate - now;
+
+            if (timeLeft <= 0) {
+                document.getElementById('countdown').innerHTML = '<h1>🎯 وقت کنکوره!</h1><div class="message">موفق باشی! 💪</div>';
                 return;
             }
 
-            const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-            const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-            const minutes = Math.floor((diff % (1000 * 60 * 60)) / (1000 * 60));
-            const seconds = Math.floor((diff % (1000 * 60)) / 1000);
+            const days = Math.floor(timeLeft / (1000 * 60 * 60 * 24));
+            const hours = Math.floor((timeLeft % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+            const minutes = Math.floor((timeLeft % (1000 * 60 * 60)) / (1000 * 60));
+            const seconds = Math.floor((timeLeft % (1000 * 60)) / 1000);
 
-            document.getElementById('days').textContent = String(days).padStart(2, '0');
-            document.getElementById('hours').textContent = String(hours).padStart(2, '0');
-            document.getElementById('minutes').textContent = String(minutes).padStart(2, '0');
-            document.getElementById('seconds').textContent = String(seconds).padStart(2, '0');
-
-            // پیام انگیزشی
-            const message = document.getElementById('message');
-            if (days > 30) {
-                message.textContent = "با برنامه‌ریزی دقیق به هدفت میرسی! 💪";
-            } else if (days > 7) {
-                message.textContent = "تمرکز کن، موفقیت نزدیکه! 🎯";
-            } else {
-                message.textContent = "آماده‌ای؟ موفقیت در انتظارته! ⚡";
-            }
+            document.getElementById('days').textContent = days;
+            document.getElementById('hours').textContent = hours;
+            document.getElementById('minutes').textContent = minutes;
+            document.getElementById('seconds').textContent = seconds;
         }
 
-        // اجرای تابع هر ثانیه
+        // Update immediately and then every second
         updateCountdown();
         setInterval(updateCountdown, 1000);
     </script>
